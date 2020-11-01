@@ -9,15 +9,15 @@ if (isset($_POST["add"])) {
 
 // delete an ID from the data file
 if (isset($_GET["delete"])) {
-    $lines = file("data.txt");
-
-    foreach ($lines as $key => $line) {
-        if (trim($line) == trim($_GET["delete"])) {
-            unset($lines[$key]);
+    $lines = file("data.txt", FILE_SKIP_EMPTY_LINES);
+    if (is_array($lines)) {
+        foreach ($lines as $key => $line) {
+            if (trim($line) == trim($_GET["delete"])) {
+                unset($lines[$key]);
+            }
         }
+        file_put_contents('data.txt', $lines);
     }
-
-    file_put_contents('data.txt', $lines);
 }
 
 // redirect to index

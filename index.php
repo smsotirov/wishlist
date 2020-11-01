@@ -36,14 +36,16 @@
     </main>
 
 <?php
-    $lines = file("data.txt");
-    foreach ($lines as $key => $line) {
-        if (trim($line) == "") {
-            continue;
+    // pull the ids from data file.
+    $lines = file("data.txt", FILE_SKIP_EMPTY_LINES);
+    if (is_array($lines)) {
+        foreach ($lines as $key => $line) {
+            if (trim($line) == "") {
+                continue;
+            }
+            echo "<input type=\"hidden\" class=\"hdn_ids\" value=\"" . trim($line) . "\" />" . PHP_EOL;
         }
-        echo "<input type=\"hidden\" class=\"hdn_ids\" value=\"" . trim($line) . "\" />" . PHP_EOL;
     }
-
 ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -1,7 +1,5 @@
 /**
- * Test comment 
- * Second line
- * Test test TEst teste ste s
+ * Test comment (it is shown in VSCode hints. This is cool.)
  */
 class Row {
     constructor() {
