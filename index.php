@@ -1,39 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist</title>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/css.css">
 </head>
-
-<body class="text-center">
-    <main role="main" class="inner cover">
-
-        <h1 class="cover-heading">Play Station Wish List.</h1>
-        <form action="action.php" method="post">
-            <label for="add">Add new game ID </label>
-            <input type="text" name="add" id="add">
-            <input type="submit" value="Submit">
-        </form>
-        <hr>
-        <div id="container">
-            <div id="spinner"></div>
+<body>
+    <div class="jumbotron">
+        <div class="text-center">
+            <h2>Play Station Wish List.</h2>
+            <hr>
+            <!-- Add new game form -->
+            <form action="action.php" method="post">
+                <label for="add">Add new game ID </label>
+                <input type="text" name="add" id="add">
+                <input type="submit" value="Submit">
+            </form>
+            <hr>
         </div>
+        <!-- Here the games rows will be appended -->
+        <div id="container" class="text-center"></div>
+    </div>
 
-        <div id="template" style="display: none;">
-            <div class="game">
-                <div class="grid-container">
-                    <div class="image grid-item"><img src="" class="game_image" alt="Game image" /></div>
-                    <div class="name grid-item"></div>
-                    <div class="price grid-item"></div>
-                    <div class="discount grid-item"></div>
-                    <div class="delete grid-item"><a href="action.php?delete=XXX">Delete</a></div>
+    <!-- the common game template row -->
+    <div id="template" style="display: none;">
+        <div class="game">
+            <div class="grid-container">
+                <!-- game image -->
+                <div class="image grid-item"><img src="" class="game_image img-responsive" alt="Game image" /></div>
+                <!-- gama name and link to the PS  Store game page -->
+                <div class="name grid-item">
+                    <a href="" class="game-url" target="_blank"><span class="game-name"></span></a>
+                </div>
+                <!-- current price, and if there is disconunt - start and edn dates and plus icon if the discount is PS Plus -->
+                <div class="grid-item">
+                    <div class="row">
+                        <div class="price col-sm-12"></div>
+                    </div>
+                    <div class="row">
+                        <div class="date-start col-sm-6 dates"></div>
+                        <div class="date-end col-sm-6 dates"></div>
+                    </div>
+                    <div class="row plus-icon-container" style="display: none;">
+                        <img src="img/plus.png" class="plus-icon" alt="">
+                    </div>
+                </div>
+                <!-- original price if there is discount -->
+                <div class="old-price grid-item"></div>
+                <!-- discount percentage if there is discount -->
+                <div class="discount grid-item"></div>
+                <!-- delete game from the list link -->
+                <div class="delete">
+                    <a href="" class="btn btn-danger btn-sm active" role="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                 </div>
             </div>
+            <hr>
         </div>
-    </main>
+    </div>
 
 <?php
     // pull the ids from data file.
@@ -47,10 +73,9 @@
         }
     }
 ?>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="row.js"></script>
-    <script src="js.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/row.js"></script>
+    <script src="js/js.js"></script>
 </body>
-
 </html>
