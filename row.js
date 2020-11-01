@@ -1,5 +1,6 @@
 /**
  * Test comment 
+ * Second line
  */
 class Row {
     constructor() {
