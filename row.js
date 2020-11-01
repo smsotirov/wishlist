@@ -1,6 +1,8 @@
+/**
+ * Test comment 
+ */
 class Row {
     constructor() {
-
         this.$row = null;
 
         this.setRow = function() {
@@ -26,6 +28,5 @@ class Row {
         this.toHtml = function() {
             return this.$row.html();
         }// toHtml
-
     }
 }//Row
