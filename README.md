@@ -6,7 +6,7 @@ How this works:
 1. Open **js/js.js** and change the locale based on your locale in PlayStation Store.
 ![Find the locale of your store](img/readme_1.jpg)
 ![Find the locale of your store](img/readme_2.jpg)
-1. Open the game in store and copy the game ID.
+1. Open the game in store and copy the game ID from the URL. The game ID is the last 37 characters of URL (everything after the last slash).
 ![Find the locale of your store](img/readme_3.jpg)
 
 1. Paste the game ID in the Wishlist form and click "Submit".
