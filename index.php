@@ -15,7 +15,7 @@
             <hr>
             <!-- Add new game form. -->
             <form action="action.php" method="post">
-                <label for="add">Add new game ID </label>
+                <label for="add">Add new game URL </label>
                 <input type="text" name="add" id="add">
                 <input type="submit" value="Submit">
             </form>

@@ -1,13 +1,19 @@
 // PS Strore Json API URL for 'en-bg' locale.
-var apiUrl = "https://store.playstation.com/store/api/chihiro/00_09_000/container/BG/en/999/";
+var apiUrltempl = "https://store.playstation.com/store/api/chihiro/00_09_000/container/{loc2}/{loc1}/999/";
 
 $(function() {
 
     // Iterate over all games IDs.
-    $.each($(".hdn_ids"), function(idx) {
+    $.each($(".hdn_ids"), function() {
+
+        // Get the locale from saved URL and set the API URL with coresponding values.
+        var value = $(this).val();
+        const idxUrl = new URL(value);
+        const locale = idxUrl.pathname.split("/")[1].split("-");
+        const apiUrl = apiUrltempl.replace("{loc2}", locale[1].toUpperCase()).replace("{loc1}", locale[0]);
 
         $.ajax({
-            url: apiUrl + $(this).val(),
+            url: apiUrl + value.split("/").pop(), // Set the full API URL including the game ID from saved URL.
         }).done(function(data) {
 
             var row = new Row();
@@ -16,9 +22,9 @@ $(function() {
             row.setRow();
 
             // Set game name, image and remove ID.
-            row.setName(data.name, data.id);
+            row.setName(data.name, value);
             row.setImage(data.images[0].url);
-            row.setRemove(data.id);    
+            row.setRemove(value);    
 
             // Set game price without or with discount.
             if ($.isEmptyObject(data.default_sku.rewards)) {

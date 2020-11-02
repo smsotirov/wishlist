@@ -3,7 +3,7 @@ body, .jumbotron {
 }
 
 input[type=text] {
-    width: 400px;
+    width: 80%;
 }
 
 img {

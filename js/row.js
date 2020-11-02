@@ -15,7 +15,7 @@ class Row {
 
         this.setName = function(name, id) {
             this.$row.find(".name").find(".game-name").html(name);
-            this.$row.find(".name").find(".game-url").attr("href", "https://store.playstation.com/en-bg/product/" + id);
+            this.$row.find(".name").find(".game-url").attr("href", id);
         }; //setName
 
         this.setPrice = function(price) {

@@ -2,15 +2,10 @@
 ### Add / Remove your desired games to wish list.
 ***
 How this works:
-1. Add the files to your web server.
-1. Open **js/js.js** and change the locale based on your locale in PlayStation Store.
-![Find the locale of your store](img/readme_1.jpg)
-![Find the locale of your store](img/readme_2.jpg)
-1. Open the game in store and copy the game ID from the URL. The game ID is the last 37 characters of URL (everything after the last slash).
-![Find the locale of your store](img/readme_3.jpg)
-
-1. Paste the game ID in the Wishlist form and click "Submit".
-1. If you want, you can remove the game from the wishlist by clicking the "Delete" button under the game image.
+1. Add the files to your own web server.
+1. Open the desired game in PlayStation store and copy the URL.
+1. To add game to the Wishlist, paste the url in the Wishlist form and click submit.
+1. To remove a game from the Wishlist, click "Delete" button under the game image.
 
 That's all folks!
 ***
