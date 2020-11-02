@@ -9,7 +9,7 @@ How this works:
 1. Open the game in store and copy the game ID.
 ![Find the locale of your store](img/readme_3.jpg)
 
-1. Paste the game ID in Wish List form and click "Submit".
+1. Paste the game ID in Wishlist form and click "Submit".
 1. If you want, you can remove the game from the wish list by click "Delete" button under the game image.
 
 That's all folks!
