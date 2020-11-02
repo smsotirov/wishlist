@@ -13,7 +13,7 @@
         <div class="text-center">
             <h2>Play Station Wish List.</h2>
             <hr>
-            <!-- Add new game form -->
+            <!-- Add new game form. -->
             <form action="action.php" method="post">
                 <label for="add">Add new game ID </label>
                 <input type="text" name="add" id="add">
@@ -21,21 +21,21 @@
             </form>
             <hr>
         </div>
-        <!-- Here the games rows will be appended -->
+        <!-- Here the games rows will be appended. -->
         <div id="container" class="text-center"></div>
     </div>
 
-    <!-- the common game template row -->
+    <!-- The common game template row. -->
     <div id="template" style="display: none;">
         <div class="game">
             <div class="grid-container">
-                <!-- game image -->
+                <!-- Game image. -->
                 <div class="image grid-item"><img src="" class="game_image img-responsive" alt="Game image" /></div>
-                <!-- gama name and link to the PS  Store game page -->
+                <!-- Gama name and link to the PS  Store game page. -->
                 <div class="name grid-item">
                     <a href="" class="game-url" target="_blank"><span class="game-name"></span></a>
                 </div>
-                <!-- current price, and if there is disconunt - start and edn dates and plus icon if the discount is PS Plus -->
+                <!-- Current price, and if there is disconunt - start and edn dates and plus icon if the discount is PS Plus. -->
                 <div class="grid-item">
                     <div class="row">
                         <div class="price col-sm-12"></div>
@@ -48,11 +48,11 @@
                         <img src="img/plus.png" class="plus-icon" alt="">
                     </div>
                 </div>
-                <!-- original price if there is discount -->
+                <!-- Original price if there is discount. -->
                 <div class="old-price grid-item"></div>
-                <!-- discount percentage if there is discount -->
+                <!-- Discount percentage if there is discount -->
                 <div class="discount grid-item"></div>
-                <!-- delete game from the list link -->
+                <!-- Delete game from the list link. -->
                 <div class="delete">
                     <a href="" class="btn btn-danger btn-sm active" role="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                 </div>
@@ -62,7 +62,7 @@
     </div>
 
 <?php
-    // pull the ids from data file.
+    // Pull the ids from data file.
     $lines = file("data.txt", FILE_SKIP_EMPTY_LINES);
     if (is_array($lines)) {
         foreach ($lines as $key => $line) {
