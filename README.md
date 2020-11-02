@@ -2,7 +2,7 @@
 ### Add / Remove your desired games to wish list.
 ***
 How this works:
-1. Add the file to your web server.
+1. Add the files to your web server.
 1. Open **js/js.js** and change the locale based on your locale in PlayStation Store.
 ![Find the locale of your store](img/readme_1.jpg)
 ![Find the locale of your store](img/readme_2.jpg)
