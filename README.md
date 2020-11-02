@@ -15,3 +15,6 @@ How this works:
 That's all folks!
 ***
  :information_source: **Note**: *The game IDs are storred in **data.txt**. You can manually insert/delete game IDs in this file. One ID per line.*
+
+ ***
+ [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?hosted_button_id=AGF7TJJNQG3JQ)
