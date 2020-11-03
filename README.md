@@ -2,7 +2,7 @@
 ### Add / Remove your desired games to wish list.
 ***
 How this works:
-1. Add the files to your own web server. Ensure that the server have write permission for file **data.xtx**. 
+1. Add the files to your own web server. Ensure that the server have write permission for file **data.txt**. 
 1. Open the desired game in PlayStation store and copy the URL.
 1. To add game to the Wishlist, paste the url in the Wishlist form and click submit.
 1. To remove a game from the Wishlist, click "Delete" button under the game image.
