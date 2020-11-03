@@ -1,5 +1,5 @@
 /**
- * This is javascript object representing one game row.
+ * This is JavaScript object representing one game row.
  */
 class Row {
     constructor() {
@@ -31,7 +31,7 @@ class Row {
         }; //setDiscount
 
         this.setRemove = function(id) {
-            this.$row.find(".delete a").attr("href", "action.php?delete=" + id);
+            this.$row.find(".delete a").attr("href", "?delete=" + id);
         }; //setRemove
 
         this.setDiscountDates = function(start, end) {
@@ -48,6 +48,6 @@ class Row {
 
         this.toHtml = function() {
             return this.$row.html();
-        };// toHtml
+        };//toHtml
     };
 };//Row

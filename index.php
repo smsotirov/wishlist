@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/css.css">
 </head>
 <body>
     <div class="jumbotron">
         <div class="text-center">
-            <h2>Play Station Wish List.</h2>
+            <h2>PlayStation Games Wishlist.</h2>
             <hr>
             <!-- Add new game form. -->
-            <form action="action.php" method="post">
+            <form method="post">
                 <label for="add">Add new game URL </label>
                 <input type="text" name="add" id="add">
                 <input type="submit" value="Submit">
             </form>
             <hr>
+            <!-- Here the games rows will be appended. -->
+            <div id="container" class="text-center"></div>
         </div>
-        <!-- Here the games rows will be appended. -->
-        <div id="container" class="text-center"></div>
     </div>
 
     <!-- The common game template row. -->
@@ -54,16 +56,50 @@
                 <div class="discount grid-item"></div>
                 <!-- Delete game from the list link. -->
                 <div class="delete">
-                    <a href="" class="btn btn-danger btn-sm active" role="button"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                    <a href="" class="btn btn-danger btn-sm active confirmation" role="button">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                    </a>
                 </div>
             </div>
             <hr>
         </div>
     </div>
 
-<?php
-    // Pull the ids from data file.
+<?php // Add/Remove game URL from data.txt PHP functionality
+
     $lines = file("data.txt", FILE_SKIP_EMPTY_LINES);
+
+    // Add new game URL to the data file.
+    if (isset($_POST["add"]) && $_POST["add"] != "") {
+
+        // Check if the game is already in.
+        if (!in_array($_POST["add"] . PHP_EOL, $lines)) {
+            $fp = fopen("data.txt", "a"); // Opens file in append mode  .
+            fwrite($fp, $_POST["add"] . PHP_EOL);
+            fclose($fp);
+            // Remove the GET (if any) params and redirect ro initial URL.
+            header("Location: " . str_replace("?" . $_SERVER["QUERY_STRING"], "", $_SERVER["REQUEST_URI"]));
+            return;
+        }
+    }
+
+    // Delete an game URL from the data file.
+    if (isset($_GET["delete"])) {
+        if (is_array($lines)) {
+            foreach ($lines as $key => $line) {
+                if (trim($line) == trim($_GET["delete"])) {
+                    unset($lines[$key]);
+                    file_put_contents('data.txt', $lines);
+
+                    // Remove the GET params and redirect ro initial URL.
+                    header("Location: " . str_replace("?" . $_SERVER["QUERY_STRING"], "", $_SERVER["REQUEST_URI"]));
+                    return;
+                }
+            }
+        }
+    }
+
+    // Pull the URLs from data file.
     if (is_array($lines)) {
         foreach ($lines as $key => $line) {
             if (trim($line) == "") {
@@ -73,8 +109,8 @@
         }
     }
 ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/row.js"></script>
     <script src="js/js.js"></script>
 </body>
