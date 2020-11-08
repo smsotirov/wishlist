@@ -1,13 +1,55 @@
 // PS Strore Json API URL template.
 var apiUrltempl = "https://store.playstation.com/store/api/chihiro/00_09_000/container/{loc2}/{loc1}/999/";
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+};//setCookie
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+};//getCookie
+
+
 $(function() {
+
+    const cookieName = "has_plus";
+    const $radios = $("input:radio[name=has_plus]");
+
+    // Check / set the "Has PS Plus" choice
+    const hasPlus = getCookie(cookieName);
+    if (hasPlus == "") {
+        setCookie(cookieName, "1", 365);
+    } else {
+        $radios.filter("[value=" + hasPlus + "]").prop("checked", true);
+    }
+
+    // Set the discounts option and reload the page. 
+    $radios.on("click", function () {
+        setCookie(cookieName, $("input[name='has_plus']:checked").val(), 365);
+        location.reload();
+    });
+
 
     // Iterate over all games URLs.
     $.each($(".hdn_ids"), function() {
 
-        // Get the locale from saved URL and set the API URL with coresponding values. Then add the game ID to teh API URL as well.
-        var value = $(this).val();
+        // Get the locale from saved URL and set the API URL with coresponding values. Then add the game ID to the API URL.
+        const value = $(this).val();
         const idxUrl = new URL(value);
         const urlPath = idxUrl.pathname;
         const locale = urlPath.split("/")[1].split("-");
@@ -17,7 +59,7 @@ $(function() {
             url: apiUrl,
         }).done(function(data) {
 
-            // Set the row.
+            // Set the game row.
             var row = new Row();
             row.setRow();
 
@@ -32,7 +74,7 @@ $(function() {
             } else {
 
                 // ... if discount is PS Plus or normal discount.
-                if (typeof data.default_sku.rewards[0].bonus_discount != "undefined") {
+                if (hasPlus == "1" && typeof data.default_sku.rewards[0].bonus_discount != "undefined") {
                     row.setPrice(data.default_sku.rewards[0].bonus_display_price);
                     row.setOldPrice(data.default_sku.display_price);
                     row.setDiscount(data.default_sku.rewards[0].bonus_discount + "%");
@@ -43,7 +85,7 @@ $(function() {
                     row.setDiscount(data.default_sku.rewards[0].discount + "%");
                 }
 
-                // Set the doscount availability dates.
+                // Set the discount availability dates.
                 row.setDiscountDates(data.default_sku.rewards[0].start_date, data.default_sku.rewards[0].end_date);
             }
 

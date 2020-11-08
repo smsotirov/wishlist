@@ -1,3 +1,4 @@
+<?php require_once "php.php"; // Import required PHP logic ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +23,10 @@
                 <input type="submit" value="Submit">
             </form>
             <hr>
+            <label for="has_plus">Show discounts </label>
+            ( with <input type="radio" name="has_plus" value="1" checked="checked"> ) 
+            ( without <input type="radio" name="has_plus" value="0"> ) PlayStation Plus sunscription.
+            <hr>
             <!-- Here the games rows will be appended. -->
             <div id="container" class="text-center"></div>
         </div>
@@ -33,11 +38,11 @@
             <div class="grid-container">
                 <!-- Game image. -->
                 <div class="image grid-item"><img src="" class="game_image img-responsive" alt="Game image" /></div>
-                <!-- Gama name and link to the PS  Store game page. -->
+                <!-- Game name and link to the PS  Store game page. -->
                 <div class="name grid-item">
                     <a href="" class="game-url" target="_blank"><span class="game-name"></span></a>
                 </div>
-                <!-- Current price, and if there is disconunt - start and edn dates and plus icon if the discount is PS Plus. -->
+                <!-- Current price, and if there is disconunt - start and edn dates and "plus" icon if the discount is PS Plus. -->
                 <div class="grid-item">
                     <div class="row">
                         <div class="price col-sm-12"></div>
@@ -65,40 +70,7 @@
         </div>
     </div>
 
-<?php // Add/Remove game URL from data.txt PHP functionality
-
-    $lines = file("data.txt", FILE_SKIP_EMPTY_LINES);
-
-    // Add new game URL to the data file.
-    if (isset($_POST["add"]) && $_POST["add"] != "") {
-
-        // Check if the game is already in.
-        if (!in_array($_POST["add"] . PHP_EOL, $lines)) {
-            $fp = fopen("data.txt", "a"); // Opens file in append mode  .
-            fwrite($fp, $_POST["add"] . PHP_EOL);
-            fclose($fp);
-            // Remove the GET (if any) params and redirect ro initial URL.
-            header("Location: " . str_replace("?" . $_SERVER["QUERY_STRING"], "", $_SERVER["REQUEST_URI"]));
-            return;
-        }
-    }
-
-    // Delete an game URL from the data file.
-    if (isset($_GET["delete"])) {
-        if (is_array($lines)) {
-            foreach ($lines as $key => $line) {
-                if (trim($line) == trim($_GET["delete"])) {
-                    unset($lines[$key]);
-                    file_put_contents('data.txt', $lines);
-
-                    // Remove the GET params and redirect ro initial URL.
-                    header("Location: " . str_replace("?" . $_SERVER["QUERY_STRING"], "", $_SERVER["REQUEST_URI"]));
-                    return;
-                }
-            }
-        }
-    }
-
+<?php
     // Pull the URLs from data file.
     if (is_array($lines)) {
         foreach ($lines as $key => $line) {
