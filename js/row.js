@@ -7,39 +7,39 @@ class Row {
 
         this.setRow = function() {
             this.$row = $("#template").clone();
-        }; //setRow
+        };//setRow
 
         this.setImage = function(src) {
             this.$row.find(".image img").attr("src", src);
-        }; //setImage
+        };//setImage
 
         this.setName = function(name, id) {
             this.$row.find(".name").find(".game-name").html(name);
             this.$row.find(".name").find(".game-url").attr("href", id);
-        }; //setName
+        };//setName
 
         this.setPrice = function(price) {
             this.$row.find(".price").html(price);
-        }; //setPrice
+        };//setPrice
 
         this.setOldPrice = function(old_price) {
             this.$row.find(".old-price").html(old_price);
-        }; //setOldPrice
+        };//setOldPrice
 
         this.setDiscount = function(discount) {
             this.$row.find(".discount").html(discount);
-        }; //setDiscount
+        };//setDiscount
 
         this.setRemove = function(id) {
             this.$row.find(".delete a").attr("href", "?delete=" + id);
-        }; //setRemove
+        };//setRemove
 
         this.setDiscountDates = function(start, end) {
             const dstart = new Date(start);
             const dend = new Date(end);
             this.$row.find(".date-start").html(dstart.toLocaleDateString());
             this.$row.find(".date-end").html(dend.toLocaleDateString());
-        }; //setDiscountDates
+        };//setDiscountDates
 
         this.showPlusIcon = function() {
             this.$row.find(".plus-icon-container").show();
